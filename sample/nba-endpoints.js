@@ -1,7 +1,10 @@
+var debug = require('debug')('sample:nba-endpoints');
+
 var apiCamel = require('../lib/index');
 var BaseEndpoints = apiCamel.BaseEndpoints();
 
 var NBAEndpoints = function () {
+  debug('initializing NBAEndpoints');
   this._init({
     baseURL: 'http://data.nba.com/data/10s/v2014/json'
   });
@@ -10,11 +13,14 @@ var NBAEndpoints = function () {
 NBAEndpoints.prototype = new BaseEndpoints();
 
 NBAEndpoints.prototype.getTeamSchedule = function(options) {
+
   options = options || {};
   options.league = options.league || 'dleague';
   options.season = options.season || '2013';
   options.team = options.team || 'energy';
   options.team = options.team.toLowerCase();
+
+  debug('getTeamSchedule', JSON.stringify(options));
   
   var endpoint = [
     'mobile_teams',
