@@ -1,7 +1,11 @@
+'use strict';
+
 var debug = require('debug')('sample:nba-endpoints');
 
 var apiCamel = require('../lib/index');
-var BaseEndpoints = apiCamel.BaseEndpoints();
+var BaseEndpoints = apiCamel.BaseEndpoints;
+
+// var GameResponseModel = require('./game-response-model');
 
 var NBAEndpoints = function () {
   debug('initializing NBAEndpoints');
@@ -35,8 +39,4 @@ NBAEndpoints.prototype.getTeamSchedule = function(options) {
   });
 };
 
-module.exports = {
-  instance: function () {
-    return new NBAEndpoints();
-  }
-};
+module.exports = NBAEndpoints;

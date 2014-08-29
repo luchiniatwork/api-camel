@@ -1,8 +1,12 @@
+'use strict';
+
 require('./fixtures')
   .load('schedule-energy');
 
-var nbaEndpoints = require('../sample/nba-endpoints').instance();
 var should = require('chai').should();
+
+var NBAEndpoints = require('../sample/nba-endpoints');
+var nbaEndpoints = new NBAEndpoints();
 
 // var nock = require('nock');
 // nock.recorder.rec();
