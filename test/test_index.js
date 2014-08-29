@@ -1,18 +1,20 @@
-
 require('./fixtures')
   .load('schedule-energy');
 
 var nbaEndpoints = require('../sample/nba-endpoints').instance();
+var should = require('chai').should();
 
 // var nock = require('nock');
 // nock.recorder.rec();
 
-var should = require('chai').should();
-
-describe('generic tests', function() {
+describe('Sample nbaEndpoints', function() {
   this.timeout(5000);
 
-  it('basic request', function(done) {
+  it('should be an object', function() {
+    nbaEndpoints.should.be.an('object');
+  });
+
+  it('should get team schedule (team Energy)', function(done) {
     nbaEndpoints.getTeamSchedule({team: 'energy'}).then(function (data) {
       done();
     })
