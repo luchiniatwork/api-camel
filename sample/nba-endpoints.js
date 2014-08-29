@@ -5,12 +5,17 @@ var debug = require('debug')('sample:nba-endpoints');
 var apiCamel = require('../lib/index');
 var BaseEndpoints = apiCamel.BaseEndpoints;
 
-// var GameResponseModel = require('./game-response-model');
+var TeamScheduleResponse = require('./team-schedule-response'),
+    GameModel = require('./game-model');
 
 var NBAEndpoints = function () {
   debug('initializing NBAEndpoints');
   this._init({
-    baseURL: 'http://data.nba.com/data/10s/v2014/json'
+    baseURL: 'http://data.nba.com/data/10s/v2014/json',
+    modelList: [
+      TeamScheduleResponse,
+      GameModel
+    ]
   });
 };
 
@@ -35,7 +40,8 @@ NBAEndpoints.prototype.getTeamSchedule = function(options) {
   ].join('/');
   
   return this._request({
-    endpoint: endpoint
+    endpoint: endpoint,
+    modelMapId: 'TeamScheduleResponse'
   });
 };
 

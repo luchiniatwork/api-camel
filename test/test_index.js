@@ -19,7 +19,15 @@ describe('Sample nbaEndpoints', function() {
   });
 
   it('should get team schedule (team Energy)', function(done) {
-    nbaEndpoints.getTeamSchedule({team: 'energy'}).then(function (data) {
+    nbaEndpoints.getTeamSchedule({team: 'energy'}).then(function (gameResponse) {
+
+      gameResponse.getTeamName().should.equal('Energy');
+      gameResponse.getTeamAbbreviation().should.equal('IWA');
+      gameResponse.getTeamCity().should.equal('Iowa');
+      gameResponse.getTeamId().should.equal(1612709911);
+
+      console.log(gameResponse.getGames().length);
+      console.log(JSON.stringify(gameResponse.getGames()[0]));
       done();
     })
     .fail(function (err) {
