@@ -1,0 +1,21 @@
+{
+  "name": "api-camel",
+  "version": "0.1.0",
+  "description": "api-camel is the perfect vehicle to carry your data from point A to point B",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "author": "Tiago Luchini <luchini@work.co>",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "gulp": "^3.8.7",
+    "gulp-mocha": "^1.0.0",
+    "mocha": "^1.21.4"
+  },
+  "dependencies": {
+    "http": "0.0.0",
+    "q": "^1.0.1"
+  }
+}
