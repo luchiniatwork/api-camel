@@ -3,59 +3,35 @@
 // var assert = require('assert');
 // var addInSet = require('../lib').addInSet;
 
+var nbaEndpoints = require('../sample/nba-endpoints').instance();
+
 // var nock = require('nock');
 
 var should = require('chai').should();
 var record = require('./record');
 
-var apiCamel = require('../lib/index');
-var BaseEndpoints = apiCamel.BaseEndpoints();
 
-var TestEndpoints = function () {
-  this._init({
-    baseURL: 'http://data.nba.com/data/10s/v2014/json'
-  });
-};
-
-TestEndpoints.prototype = new BaseEndpoints();// apiCamel.getBaseEndpoints();
-
-TestEndpoints.prototype.getTeamSchedule = function(options) {
-  options = options || {};
-  options.league = options.league || 'dleague';
-  options.season = options.season || '2013';
-  options.team = options.team || 'energy';
-  options.team = options.team.toLowerCase();
-  
-  var endpoint = [
-    'mobile_teams',
-    options.league,
-    options.season,
-    'teams',
-    options.team + '_schedule_02.json'
-  ].join('/');
-  
-  return this._request({
-    endpoint: endpoint
-  });
-};
-
-describe('simple test', function() {
+describe('generic tests', function() {
   this.timeout(5000);
 
-  var testEndpoints = new TestEndpoints();
+  var recorder = record('lixoooo');
+  before(recorder.before);
   
-  it('endpoints should allow creating objects', function() {
-    testEndpoints.should.be.an('object');
-  });
+  // it('endpoints should allow creating objects', function() {
+  //   nbaEndpoints.should.be.an('object');
+  // });
 
   it('basic request', function(done) {
-    testEndpoints.getTeamSchedule({team: 'energy'}).then(function (data) {
+    nbaEndpoints.getTeamSchedule({team: 'energy'}).then(function (data) {
       done();
     })
     .fail(function (err) {
       done(err);
-    });;
+    });
   });
+  
+  after(recorder.after);
+  
 
 });
 
