@@ -2,7 +2,6 @@ var debug = require('debug')('fixtures');
 
 var nock = require('nock');
 var path = require('path');
-var fs = require('fs');
 
 var loader = function (names) {
   var bypassFixtures = process.env.BYPASS_FIXTURES;
