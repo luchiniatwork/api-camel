@@ -14,20 +14,8 @@ TeamScheduleResponse.mapping = [
 
 TeamScheduleResponse.prototype = new BaseModel();
 
-TeamScheduleResponse.prototype.getTeamName = function() {
-  return this.get('gscd').get('tn');
-};
-
-TeamScheduleResponse.prototype.getTeamAbbreviation = function() {
-  return this.get('gscd').get('ta');
-};
-
-TeamScheduleResponse.prototype.getTeamCity = function() {
-  return this.get('gscd').get('tc');
-};
-
-TeamScheduleResponse.prototype.getTeamId = function() {
-  return this.get('gscd').get('tid');
+TeamScheduleResponse.prototype.getTeam = function() {
+  return this.get('gscd')
 };
 
 TeamScheduleResponse.prototype.getGames = function() {
