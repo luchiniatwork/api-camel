@@ -31,6 +31,22 @@ var NBAEndpoints = function () {
 
 NBAEndpoints.prototype = new BaseEndpoints();
 
+NBAEndpoints.prototype._seasonTypeId = function(seasonType) {
+  var seasonTypeId = null;
+  switch (seasonType) {
+  case 'PRE-SEASON':
+    seasonTypeId = '01';
+    break;
+  case 'REGULAR':
+    seasonTypeId = '02';
+    break;
+  case 'PLAYOFFS':
+    seasonTypeId = '04';
+    break;
+  }
+  return seasonTypeId
+};
+
 NBAEndpoints.prototype.getTeamSchedule = function(options) {
 
   options = options || {};
@@ -42,18 +58,7 @@ NBAEndpoints.prototype.getTeamSchedule = function(options) {
 
   debug('getTeamSchedule', JSON.stringify(options));
 
-  var seasonTypeId = null;
-  switch (options.seasonType) {
-  case 'PRE-SEASON':
-    seasonTypeId = '01';
-    break;
-  case 'REGULAR':
-    seasonTypeId = '02';
-    break;
-  case 'PLAYOFFS':
-    seasonTypeId = '04';
-    break;
-  }
+  var seasonTypeId = this._seasonTypeId(options.seasonType);
 
   var endpoint = [
     'mobile_teams',
@@ -85,18 +90,7 @@ NBAEndpoints.prototype.getPlayerCard = function(options) {
 
   debug('getPlayerCard', JSON.stringify(options));
 
-  var seasonTypeId = null;
-  switch (options.seasonType) {
-  case 'PRE-SEASON':
-    seasonTypeId = '01';
-    break;
-  case 'REGULAR':
-    seasonTypeId = '02';
-    break;
-  case 'PLAYOFFS':
-    seasonTypeId = '04';
-    break;
-  }
+  var seasonTypeId = this._seasonTypeId(options.seasonType);
 
   var endpoint = [
     'mobile_teams',
