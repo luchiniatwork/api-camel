@@ -1,6 +1,6 @@
 {
   "name": "api-camel",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "api-camel is the perfect vehicle to carry your data from point A to point B",
   "main": "lib/index.js",
   "scripts": {

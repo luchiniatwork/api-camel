@@ -150,4 +150,32 @@ describe('Sample nbaEndpoints', function() {
     });
   });
 
+  it('should get the proper player card', function(done) {
+    nbaEndpoints.getPlayerCard({playerID: '200780'}).then(function (playerCardResponse) {
+      
+      var playerCard = playerCardResponse.getPlayerCard();
+      
+      playerCard.getDOB().should.equal('1984-07-16');
+      playerCard.getFirstName().should.equal('Solomon');
+      playerCard.getLastName().should.equal('Jones');
+      playerCard.getHeight().should.equal('6-10');
+      playerCard.getWeight().should.equal(245);
+      playerCard.getID().should.equal(200780);
+      
+      var ca = playerCard.getCareerAverages();
+      ca.getPoints().should.equal(8.9);
+      ca.getGamesPlayed().should.equal(17);
+      ca.getBlocks().should.equal(1.47);
+      ca.getSteals().should.equal(0.59);
+      ca.getRebounds().should.equal(6.12);
+      ca.getAssists().should.equal(1.4);
+      ca.getMinutes().should.equal(24.3);
+      
+      done();
+    })
+    .fail(function (err) {
+      done(err);
+    });
+  });
+  
 });

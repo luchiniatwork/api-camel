@@ -6,6 +6,7 @@ var apiCamel = require('../lib/index');
 var BaseModel = apiCamel.BaseModel;
 
 var TeamScheduleResponse = function () {
+  BaseModel.call(this);
 };
 
 TeamScheduleResponse.mapping = [

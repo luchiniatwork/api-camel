@@ -6,9 +6,12 @@ var apiCamel = require('../lib/index');
 var BaseEndpoints = apiCamel.BaseEndpoints;
 
 var TeamScheduleResponse = require('./team-schedule-response'),
+    PlayerCardResponse = require('./player-card-response'),
     GameModel = require('./game-model'),
     TeamModel = require('./team-model'),
-    BroadcasterModel = require('./broadcaster-model');
+    BroadcasterModel = require('./broadcaster-model'),
+    PlayerCardModel = require('./player-card-model'),
+    StatsAveragesModel = require('./stats-averages-model');
 
 var NBAEndpoints = function () {
   debug('initializing NBAEndpoints');
@@ -18,7 +21,10 @@ var NBAEndpoints = function () {
       TeamScheduleResponse,
       GameModel,
       TeamModel,
-      BroadcasterModel
+      BroadcasterModel,
+      PlayerCardResponse,
+      PlayerCardModel,
+      StatsAveragesModel
     ]
   });
 };
@@ -66,6 +72,49 @@ NBAEndpoints.prototype.getTeamSchedule = function(options) {
   return this._request({
     endpoint: endpoint,
     modelMapId: 'TeamScheduleResponse'
+  });
+};
+
+NBAEndpoints.prototype.getPlayerCard = function(options) {
+
+  options = options || {};
+  options.league = options.league || 'dleague';
+  options.season = options.season || '2013';
+  options.playerID = options.playerID || '';
+  options.seasonType = options.seasonType || 'REGULAR';
+
+  debug('getPlayerCard', JSON.stringify(options));
+
+  var seasonTypeId = null;
+  switch (options.seasonType) {
+  case 'PRE-SEASON':
+    seasonTypeId = '01';
+    break;
+  case 'REGULAR':
+    seasonTypeId = '02';
+    break;
+  case 'PLAYOFFS':
+    seasonTypeId = '04';
+    break;
+  }
+
+  var endpoint = [
+    'mobile_teams',
+    options.league,
+    options.season,
+    'players',
+    [
+      'playercard',
+      options.playerID,
+      seasonTypeId
+    ].join('_') + '.json'
+  ].join('/');
+  
+  debug('using endpoint', endpoint);
+  
+  return this._request({
+    endpoint: endpoint,
+    modelMapId: 'PlayerCardResponse'
   });
 };
 
