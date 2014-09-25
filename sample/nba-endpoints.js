@@ -6,7 +6,6 @@ var apiCamel = require('../lib/index');
 var BaseEndpoints = apiCamel.BaseEndpoints;
 
 var TeamScheduleResponse = require('./team-schedule-response'),
-    PlayerCardResponse = require('./player-card-response'),
     GameModel = require('./game-model'),
     TeamModel = require('./team-model'),
     BroadcasterModel = require('./broadcaster-model'),
@@ -22,7 +21,6 @@ var NBAEndpoints = function () {
       GameModel,
       TeamModel,
       BroadcasterModel,
-      PlayerCardResponse,
       PlayerCardModel,
       StatsAveragesModel
     ]

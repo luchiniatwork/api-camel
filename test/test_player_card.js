@@ -15,9 +15,8 @@ describe('Sample NBAEndpoints - player card', function() {
   this.timeout(5000);
 
   it('should get the proper player card', function(done) {
-    nbaEndpoints.getPlayerCard({playerID: '200780'}).then(function (playerCardResponse) {
-      
-      var playerCard = playerCardResponse.getPlayerCard();
+    nbaEndpoints.getPlayerCard({playerID: '200780'}).then(function (playerCard) {
+      // var playerCard = playerCardResp.get('pl');
       
       playerCard.getDOB().should.equal('1984-07-16');
       playerCard.getFirstName().should.equal('Solomon');
