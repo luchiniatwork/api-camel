@@ -88,11 +88,19 @@ GameModel.prototype.getStatus = function() {
 };
 
 GameModel.prototype.getHomeTeam = function() {
-  return this.get('h');
+  return this.get('homeTeam');
+};
+
+GameModel.prototype.getHomeTeamResults = function() {
+  return this.get('homeTeamResults');
 };
 
 GameModel.prototype.getVisitingTeam = function() {
-  return this.get('v');
+  return this.get('visitingTeam');
+};
+
+GameModel.prototype.getVisitingTeamResults = function() {
+  return this.get('visitingTeamResults');
 };
 
 module.exports = GameModel;

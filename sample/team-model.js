@@ -11,8 +11,8 @@ var TeamModel = function () {
 
 TeamModel.mapping = [
   'TeamScheduleResponse::gscd',
-  'TeamScheduleResponse::gscd::g::h',
-  'TeamScheduleResponse::gscd::g::v',
+  { 'TeamScheduleResponse::gscd::g::h': 'homeTeam' },
+  { 'TeamScheduleResponse::gscd::g::v': 'visitingTeam' }
 ];
 
 TeamModel.prototype = new BaseModel();
@@ -31,14 +31,6 @@ TeamModel.prototype.getName = function() {
 
 TeamModel.prototype.getID = function() {
   return this.get('tid');
-};
-
-TeamModel.prototype.getScore = function() {
-  return this.get('s');
-};
-
-TeamModel.prototype.getRecord = function() {
-  return this.get('re');
 };
 
 module.exports = TeamModel;

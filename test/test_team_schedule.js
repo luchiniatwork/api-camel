@@ -73,36 +73,40 @@ describe('Sample NBAEndpoints - team schedule', function() {
       var games = teamScheduleResponse.getGames();
 
       var team = games[0].getVisitingTeam();
+      var teamResults = games[0].getVisitingTeamResults();
       team.getID().should.equal(1612709911);
       team.getCity().should.equal('Iowa');
       team.getAbbreviation().should.equal('IWA');
       team.getName().should.equal('Energy');
-      team.getScore().should.equal('127');
-      team.getRecord().should.equal('1-0');
+      teamResults.getScore().should.equal('127');
+      teamResults.getRecord().should.equal('1-0');
 
       team = games[0].getHomeTeam();
+      teamResults = games[0].getHomeTeamResults();
       team.getID().should.equal(1612709889);
       team.getCity().should.equal('Tulsa');
       team.getAbbreviation().should.equal('TUL');
       team.getName().should.equal('66ers');
-      team.getScore().should.equal('117');
-      team.getRecord().should.equal('0-1');
+      teamResults.getScore().should.equal('117');
+      teamResults.getRecord().should.equal('0-1');
 
       team = games[49].getVisitingTeam();
+      teamResults = games[49].getVisitingTeamResults();
       team.getID().should.equal(1612709917);
       team.getCity().should.equal('Springfield');
       team.getAbbreviation().should.equal('SPG');
       team.getName().should.equal('Armor');
-      team.getScore().should.equal('132');
-      team.getRecord().should.equal('4-13');
+      teamResults.getScore().should.equal('132');
+      teamResults.getRecord().should.equal('4-13');
 
       team = games[49].getHomeTeam();
+      teamResults = games[49].getHomeTeamResults();
       team.getID().should.equal(1612709911);
       team.getCity().should.equal('Iowa');
       team.getAbbreviation().should.equal('IWA');
       team.getName().should.equal('Energy');
-      team.getScore().should.equal('143');
-      team.getRecord().should.equal('12-5');
+      teamResults.getScore().should.equal('143');
+      teamResults.getRecord().should.equal('12-5');
 
       done();
     })
