@@ -15,7 +15,7 @@ var TeamScheduleResponse = require('./team-schedule-response'),
 
 var NBAEndpoints = function () {
   debug('initializing NBAEndpoints');
-  this._init({
+  BaseEndpoints.call(this, {
     baseURL: 'http://data.nba.com/data/10s/v2014/json',
     modelList: [
       TeamScheduleResponse,
@@ -76,7 +76,7 @@ NBAEndpoints.prototype.getTeamSchedule = function(options) {
   
   return this._request({
     endpoint: endpoint,
-    modelMapId: 'TeamScheduleResponse'
+    namespace: 'TeamScheduleResponse'
   });
 };
 
@@ -108,7 +108,7 @@ NBAEndpoints.prototype.getPlayerCard = function(options) {
   
   return this._request({
     endpoint: endpoint,
-    modelMapId: 'PlayerCardResponse'
+    namespace: 'PlayerCardResponse'
   });
 };
 
