@@ -90,7 +90,16 @@ This is exactly the kind of thing that API-Camel allows you to do in a very cont
 API-Camel's Opinionated Approach
 --------------------------------
 
-API-Camel makes this
+API-Camel uses a series of principles behind its operational mode:
+
+* Encapsulation: API-Camel is totally tuned towards having as much encapsulation as possible.
+  that concept permeates some of the architectural decisions behind it
+* Data Models: one of the main encapsulation components is the data model principle. Hiding complexities
+  of the API requests and responses behind clearly specified data models is key
+* API Endpoints: any single API will have a collection of endpoints for a series of different
+  functionalities. API-Camel expects each to be defined and encapsulated accordingly.
+* promises: we love promises and have built API-Camel with promises from the ground up. If you are
+  not familiar with them, check them out [here](http://www.html5rocks.com/en/tutorials/es6/promises/).
 
 Breaking the Model Down
 -----------------------
@@ -291,12 +300,38 @@ Here is the whole content of `nba-endpoints.js`:
 Endpoints and Models working together
 -------------------------------------
 
+Now that we have our data model `PlayerCardModel` and our endpoint `NBAEndpoints` classes, we can
+enjoy the fruits of our work. Simply:
+
+    var NBAEndpoints = require('./nba-endpoints');
+    var nbaEndpoints = new NBAEndpoints();
+    
+    nbaEndpoints.getPlayerCard({
+      league: 'dleague',
+      season: '2013',
+      playerID: '200780'
+    }).then(function (playerCard) {
+      console.log(playerCard.getFirstName());
+      console.log(playerCard.getLastName());
+    });
+
+There you go! You require our `NBAEndpoints` class, instantiate it and call the endpoint `getPlayerCard`.
+
+When the promise resolves, you get a `PlayerCardModel` instance (here called `playerCard`). And then you
+can do whatever you need to do with your data model.
 
 Advanced Settings
 -----------------
 
 
-Testing
--------
+Other Fun Things
+----------------
+
+Forking, Extending, Testing
+---------------------------
+
+Feel free to fork and extend/fix API-Camel any way you see fit.
+
+If you need to test it, simply run:
 
     npm test
