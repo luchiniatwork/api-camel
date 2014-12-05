@@ -323,9 +323,38 @@ can do whatever you need to do with your data model.
 Advanced Settings
 -----------------
 
+For the sake of good architecture, you want to reuse as many data models as
+possible. Let's consider the response we get from the API we are coding
+througout this tutorial:
+
+    {
+        "pl": {
+            "ca": {...},
+            "dob": "1984-07-16",
+            "dy": "2006",
+            "fn": "Solomon",
+            "gls": {...},
+            "hcc": "South Florida/USA",
+            "ht": "6-10",
+            "ln": "Jones",
+            "num": "44",
+            "pc": "solomon_jones",
+            "pid": 200780,
+            "pos": "F",
+            "ta": "ERI",
+            "tc": "Erie",
+            "tid": 1612709913,
+            "tn": "BayHawks",
+            "wt": 245,
+            "y": 0
+        }
+    }
+
+You'll notice that we have nodes about the player and nodes about the team. We want to break these 
 
 Other Fun Things
 ----------------
+
 
 Forking, Extending, Testing
 ---------------------------
