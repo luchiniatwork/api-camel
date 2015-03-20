@@ -1,9 +1,16 @@
 'use strict';
 
-var gulp  = require('gulp'),
-    mocha = require('gulp-mocha');
+/*
+  gulpfile.js
+  ===========
+  Eeach task has been broken out into its own file in gulp/tasks.
+  Any files in that directory get automatically required below.
+  To add a new task, simply add a new task file that directory.
+  gulp/tasks/default.js specifies the default set of tasks to run
+  when you run `gulp`.
+*/
 
-gulp.task('test', function () {
-    return gulp.src('test/**/test_*.js', {read: false})
-        .pipe(mocha({reporter: 'spec'}));
-});
+var requireDir = require('require-dir');
+
+// Require all tasks in gulp/tasks, including subfolders
+requireDir('./gulp/tasks', { recurse: true });
