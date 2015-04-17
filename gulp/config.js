@@ -1,11 +1,7 @@
 'use strict';
 
 module.exports = {
-  app: {
-    temp: '.tmp/',
-    dist: 'dist/'
-  },
-
+  
   lint: {
     src: [
       'gulp/{,**/}*.js',
@@ -16,12 +12,18 @@ module.exports = {
 
   scripts: {
     debug: true,
-    'bundleConfigs': [
+    bundleConfigs: [
       {
-        entries: './lib/index.js',
-        extensions: [ ],
-        dest: './dist',
-        outputName: 'head.bundle.js'
+        src: 'src/lib/**/*.js',
+        dest: 'dist/lib',
+        minDest: 'dist',
+        outputName: 'index.min.js'
+      },
+      {
+        src: 'src/sample_hal2/**/*.js',
+        dest: 'dist/sample_hal2',
+        minDest: 'dist',
+        outputName: 'sample_hal2.min.js'
       }
     ]
   }
